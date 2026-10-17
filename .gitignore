@@ -1,0 +1,27 @@
+﻿# Credenciales y configuracion privada
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Sistema operativo y editores
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
+# Temporales y copias de seguridad
+*.log
+*.bak
+*.tmp
+*.old
+*~
+
+# Dependencias y herramientas
+node_modules/
+vendor/
+
+# Git
