@@ -181,21 +181,34 @@
 
     root.classList.add("is-inview");
 
-    if (reducedMotion || track.querySelector(".recognition-set.is-clone")) {
-      return;
+    if (!track.querySelector(".recognition-set.is-clone")) {
+      var clone = set.cloneNode(true);
+      clone.classList.add("is-clone");
+      clone.setAttribute("aria-hidden", "true");
+      clone.querySelectorAll("img").forEach(function (img) {
+        img.alt = "";
+      });
+      clone.querySelectorAll("button").forEach(function (button) {
+        button.setAttribute("tabindex", "-1");
+        button.setAttribute("aria-hidden", "true");
+      });
+      track.appendChild(clone);
     }
 
-    var clone = set.cloneNode(true);
-    clone.classList.add("is-clone");
-    clone.setAttribute("aria-hidden", "true");
-    clone.querySelectorAll("img").forEach(function (img) {
-      img.alt = "";
+    function sizeTrack() {
+      var width = set.getBoundingClientRect().width;
+      if (width > 0) {
+        track.style.setProperty("--recognition-shift", width + "px");
+      }
+    }
+
+    sizeTrack();
+    window.addEventListener("resize", sizeTrack);
+    set.querySelectorAll("img").forEach(function (img) {
+      if (!img.complete) {
+        img.addEventListener("load", sizeTrack);
+      }
     });
-    clone.querySelectorAll("button").forEach(function (button) {
-      button.setAttribute("tabindex", "-1");
-      button.setAttribute("aria-hidden", "true");
-    });
-    track.appendChild(clone);
   }
 
   function initLightbox() {

@@ -275,6 +275,36 @@ Se sustituyó el crossfade entre fotos por una cinta horizontal continua de dere
 
 Limitaciones: `mask-image` no cubre navegadores muy antiguos (el recorte `overflow: hidden` sigue ocultando el borde). El hover real del puntero no se retuvo en la automatización; la pausa se comprobó con `CSS.forcePseudoState`. El visor de capturas a veces no sigue el scroll hasta la cinta; las medidas CDP sí.
 
+## Causa raíz del carrusel estático — 17 de octubre de 2026
+
+Sin commit ni push. Archivos: `css/site.css`, `js/site.js`, este registro. `quienessomos.html` no requirió cambio.
+
+### Causa (commit `8d1c23d`)
+
+La cinta `recognition-conveyor` existía, pero `prefers-reduced-motion: reduce` la desmontaba:
+
+1. El bloque reducido ponía `.recognition-track { animation: none; flex-wrap: wrap }`, ocultaba `.is-clone` y quitaba la máscara → galería estática en filas (coincide con la captura publicada).
+2. La regla global `* { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important }` anulaba cualquier animación restante.
+3. `initRecognitionCarousel()` salía si `reducedMotion` era verdadero, así que no se clonaba el grupo y el bucle `-50%` no podía ser continuo.
+
+El navegador de prueba (y muchos SO) tienen reduced-motion activo, así que el fallo se veía en producción aunque el CSS de la cinta estuviera presente.
+
+### Corrección
+
+- Siempre clonar el set (accesible: `aria-hidden`, `alt` vacío, `tabindex="-1"`).
+- Medir el ancho real del set y asignar `--recognition-shift` (el keyframe usa ese valor, no un `-50%` ciego).
+- `flex-wrap: nowrap` en pista y sets a todos los anchos.
+- Reduced-motion: misma cinta horizontal, más lenta (90 s) con `!important` para vencer el `*` global; máscara y clon se conservan. Sin grid estático.
+
+### Validación (estilos computados y transform)
+
+| Preferencia | Fila única | Movimiento RTL | Bucle | Hover / salida | Máscara / overflow |
+| --- | --- | --- | --- | --- | --- |
+| `no-preference` | `nowrap`, altura pista = set (340 px), 2 sets de 1372 px, `--recognition-shift: 1372px` | `tx` −389 → −428 en 1,2 s (`dx` −39); 42 s infinite | dos sets iguales | `:hover` `paused` fijo −771.46; al salir `running` −864 → −893 | mask 7%/93%; `scrollWidth` extra = 0 |
+| `reduce` | igual: `nowrap`, 2 sets, clon presente | `tx` −151 → −176 en 1,6 s (`dx` −25); 90 s infinite | igual | `paused` fijo −325.34; al salir −371 → −387 | mask presente; overflow extra = 0 |
+
+Capturas: varias fotos a la vez en una sola línea, entrada/salida con degradado en los bordes, diploma `object-fit: contain`. No se reintrodujeron flechas, puntos ni `setInterval`. Reproductor sin cambios.
+
 ## Git (sin commit)
 
 ```

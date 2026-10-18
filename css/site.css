@@ -661,6 +661,7 @@ body.is-dialog-open {
 
 .recognition-track {
   display: flex;
+  flex-wrap: nowrap;
   width: max-content;
   animation: recognition-conveyor 42s linear infinite;
 }
@@ -671,6 +672,7 @@ body.is-dialog-open {
 
 .recognition-set {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 28px;
   padding-right: 28px;
@@ -728,7 +730,7 @@ body.is-dialog-open {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(calc(-1 * var(--recognition-shift, 50%)));
   }
 }
 
@@ -1322,27 +1324,19 @@ img {
   }
 
   .recognition-track {
-    animation: none;
-    flex-wrap: wrap;
-    width: auto;
-    justify-content: center;
+    animation-name: recognition-conveyor !important;
+    animation-duration: 90s !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+    flex-wrap: nowrap;
+    width: max-content;
   }
 
   .recognition-set,
   .recognition-set.is-clone {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-right: 0;
-    gap: 16px;
-  }
-
-  .recognition-set.is-clone {
-    display: none;
-  }
-
-  .recognition-viewport {
-    -webkit-mask-image: none;
-    mask-image: none;
-    overflow: visible;
+    display: flex;
+    flex-wrap: nowrap;
+    padding-right: 28px;
+    gap: 28px;
   }
 }
