@@ -17,10 +17,20 @@
 
         <div id="welcomePopup" class="welcome-dialog" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-hidden="true">
             <div class="welcome-dialog-content">
+                <div class="welcome-waves sound-waves" aria-hidden="true">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
                 <button type="button" class="close-dialog" aria-label="Cerrar bienvenida">&times;</button>
-                <p class="mb-2"><strong>Erasmo Angarita Tovar y su grupo de trabajo</strong></p>
-                <h2 id="welcome-title">Les dan la bienvenida a</h2>
-                <p class="radio-hero-title">Emisora Historia de un Legado</p>
+                <img src="images/logo.png" class="welcome-logo" alt="Emisora Historia de un Legado">
+                <p class="welcome-kicker"><strong>Erasmo Angarita Tovar y su grupo de trabajo</strong> les dan la bienvenida</p>
+                <h2 id="welcome-title">Emisora Historia de un Legado</h2>
+                <p class="welcome-tagline">Voces que inspiran, historias que transforman.</p>
+                <div class="welcome-actions">
+                    <a class="welcome-listen" href="#reproductor-en-linea" data-welcome-listen>Escuchar emisora</a>
+                    <a class="welcome-history" href="quienessomos.html" data-welcome-history>Conocer nuestra historia</a>
+                </div>
             </div>
         </div>
 
@@ -58,7 +68,7 @@
             </div>
         </header>
 
-        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+        <nav class="navbar navbar-expand-xl bg-light shadow-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <img src="images/logo.png" class="logo img-fluid" alt="Emisora Historia de un Legado">
@@ -126,7 +136,7 @@
                 </div>
             </section>
 
-            <section class="section-padding radio-bg">
+            <section class="section-padding radio-bg radio-stage" id="reproductor-en-linea">
                 <div class="container">
                     <div class="page-intro">
                         <p class="page-kicker">Escúchanos</p>
@@ -148,6 +158,9 @@
                                 <div class="radio-subtitle">Reproductor en línea para escuchar nuestra programación</div>
                             </div>
                         </div>
+                        <div class="eq-bars" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
                         <div class="radio-player">
                             <iframe
                                 name="contenedorPlayer"
@@ -164,23 +177,18 @@
 
             <section class="section-padding fanpage-section">
                 <div class="container">
-                    <div class="text-center mb-5">
-                        <h2>Fan page</h2>
-                        <p>Sigue nuestras publicaciones y novedades en Facebook</p>
-                    </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-7">
-                            <div class="facebook-box">
-                                <iframe
-                                    title="Fan page de Facebook Historia de un Legado"
-                                    src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/HistoriadeunLegado&tabs=timeline&width=500&height=650"
-                                    width="100%"
-                                    height="650"
-                                    style="border:none;overflow:hidden"
-                                    scrolling="no"
-                                    allowfullscreen="true"
-                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                            </div>
+                        <div class="col-lg-6 col-md-8">
+                            <article class="facebook-card">
+                                <span class="facebook-card-badge" aria-hidden="true"><i class="bi-facebook"></i></span>
+                                <img src="images/logo.png" alt="Emisora Historia de un Legado">
+                                <h2>Síguenos en Facebook</h2>
+                                <p>Acompáñanos en las publicaciones y las actividades comunitarias de la emisora.</p>
+                                <a class="facebook-card-btn" href="https://www.facebook.com/HistoriadeunLegado/" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi-facebook" aria-hidden="true"></i>
+                                    Visitar Facebook
+                                </a>
+                            </article>
                         </div>
                     </div>
                 </div>
@@ -271,31 +279,20 @@
 
         <footer class="site-footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-12 mb-4 footer-identity">
+                <div class="row gy-4">
+                    <div class="col-lg-7 col-12 footer-identity">
                         <a href="index.html"><img src="images/logo.png" class="logo img-fluid mb-3" alt="Emisora Historia de un Legado"></a>
                         <h2>Emisora Historia de un Legado</h2>
                         <p class="footer-slogan">Voces que inspiran, historias que transforman.</p>
                         <p class="footer-description">La Emisora Historia de un Legado es un medio de comunicación virtual que, desde 1999, trabaja con pasión y compromiso al servicio de la comunidad. Inspirada en el Legado Educativo de Monseñor José Joaquín Salcedo, promueve la comunicación como herramienta para educar, informar, unir y transformar vidas. A través de su programación y labor social, busca transmitir valores, compartir conocimientos y fortalecer los lazos comunitarios, dejando huellas positivas en la sociedad.</p>
                         <p class="footer-description">¡Sintonízanos y sé parte de este legado que sigue haciendo historia!</p>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-12 mb-4">
-                        <h3 class="site-footer-title h5 mb-3">Navegación</h3>
-                        <ul class="footer-menu">
-                            <li class="footer-menu-item"><a href="index.html" class="footer-menu-link">Inicio</a></li>
-                            <li class="footer-menu-item"><a href="quienessomos.html" class="footer-menu-link">Quiénes Somos</a></li>
-                            <li class="footer-menu-item"><a href="programacion.html" class="footer-menu-link">Programación</a></li>
-                            <li class="footer-menu-item"><a href="contactos.html" class="footer-menu-link">Contáctanos</a></li>
-                            <li class="footer-menu-item"><a href="politicas.html" class="footer-menu-link">Política de Privacidad</a></li>
-                            <li class="footer-menu-item"><a href="donate.html" class="footer-menu-link">Donaciones</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5 col-md-6 col-12">
+                    <div class="col-lg-5 col-12">
                         <h3 class="site-footer-title h5 mb-3">Información de contacto</h3>
-                        <p class="footer-hint">En la parte inferior de esta página encontrarás nuestra <a href="contactos.html#informacion-contacto">información de contacto</a> y las <a href="politicas.html#politica-privacidad">políticas de privacidad</a>.</p>
                         <p><i class="bi-telephone me-2" aria-hidden="true"></i><a href="tel:+573142444009" class="site-footer-link">314 244 4009</a></p>
                         <p><i class="bi-whatsapp me-2" aria-hidden="true"></i><a href="https://wa.me/573142444009" class="site-footer-link" target="_blank" rel="noopener noreferrer">Contáctanos por WhatsApp</a></p>
                         <p><i class="bi-envelope me-2" aria-hidden="true"></i><a href="mailto:emisorahistoria@emisorahistoriadeunlegado.org" class="site-footer-link">emisorahistoria@emisorahistoriadeunlegado.org</a></p>
+                        <p class="footer-hint">Consulta también nuestras <a href="politicas.html#politica-privacidad">políticas de privacidad</a>.</p>
                         <p><i class="bi-geo-alt me-2" aria-hidden="true"></i> Barrio Potosí, Localidad de Ciudad Bolívar, Bogotá D.C., Colombia</p>
                         <nav class="footer-institutional mt-3" aria-label="Sitios institucionales">
                             <a href="https://www.presidencia.gov.co/" target="_blank" rel="noopener noreferrer">Presidencia de la República de Colombia</a>
@@ -307,21 +304,16 @@
             </div>
             <div class="site-footer-bottom">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-7 col-12">
-                            <p class="copyright-text mb-0">Copyright © 2026 Emisora Historia de un Legado</p>
-                            <p class="copyright-text mb-0">Host y streaming: <strong>Nelson Mora</strong> · Redacción: <strong>Diego Becerra</strong></p>
-                            <p class="copyright-text mt-2">Desarrollado por: <strong><a href="https://rojastech.online" target="_blank" rel="noopener noreferrer">RojasTech</a></strong></p>
-                        </div>
-                        <div class="col-lg-5 col-12 text-lg-end mt-3 mt-lg-0">
-                            <ul class="social-icon">
-                                <li class="social-icon-item"><a href="https://www.facebook.com/HistoriadeunLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Historia de un Legado"></a></li>
-                                <li class="social-icon-item"><a href="https://www.facebook.com/erasmo.angaritatovar/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Erasmo Angarita Tovar"></a></li>
-                                <li class="social-icon-item"><a href="https://www.facebook.com/EMISORAHistoriaDeUnLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de la emisora"></a></li>
-                                <li class="social-icon-item"><a href="https://www.youtube.com/@Historiadeunlegado" class="social-icon-link bi-youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube Historia de un legado"></a></li>
-                            </ul>
-                        </div>
+                    <div class="footer-credits-row">
+                        <p class="footer-credits">Host y streaming: <strong>Nelson Mora</strong> · Redacción: <strong>Diego Becerra</strong> · Desarrollado por: <strong><a href="https://rojastech.online" target="_blank" rel="noopener noreferrer">RojasTech</a></strong></p>
+                        <ul class="social-icon">
+                            <li class="social-icon-item"><a href="https://www.facebook.com/HistoriadeunLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Historia de un Legado"></a></li>
+                            <li class="social-icon-item"><a href="https://www.facebook.com/erasmo.angaritatovar/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Erasmo Angarita Tovar"></a></li>
+                            <li class="social-icon-item"><a href="https://www.facebook.com/EMISORAHistoriaDeUnLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de la emisora"></a></li>
+                            <li class="social-icon-item"><a href="https://www.youtube.com/@Historiadeunlegado" class="social-icon-link bi-youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube Historia de un legado"></a></li>
+                        </ul>
                     </div>
+                    <p class="footer-copyright">Copyright © 2026 Emisora Historia de un Legado</p>
                 </div>
             </div>
         </footer>

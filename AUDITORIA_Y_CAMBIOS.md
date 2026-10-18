@@ -134,6 +134,77 @@ No se añadieron horarios, presentadores ni disponibilidad en vivo no documentad
 2. Incluir en git, cuando el propietario lo decida, `images/Imagenes reconocimientos/` para que las fotos se publiquen.
 3. Publicar los HTML/CSS/JS/PHP modificados de forma manual.
 
+## Iteración de pulido visual — 17 de octubre de 2026
+
+Trabajo sobre el estado local ya implementado. No se reescribió el sitio. No se creó commit ni se hizo push. `enviar_correo.php` no se modificó en esta iteración.
+
+### Archivos tocados en esta iteración
+
+- `index.html` — diálogo de bienvenida, ancla del reproductor, escenario de radio, Facebook compacto + fallback, pie.
+- `quienessomos.html` — galería con diploma destacado, lightbox, pie, `navbar-expand-xl`.
+- `programacion.html`, `contactos.html`, `politicas.html`, `donate.html` — pie unificado y navegación `xl`.
+- `css/site.css` — barra superior, marca, radio, bienvenida, Facebook, hover, pie, lightbox, overflow móvil.
+- `js/site.js` — bienvenida (sesión, Escape, foco, bloqueo de fondo), plugin de Facebook sin `tabs=timeline`, lightbox.
+
+### Ocho mejoras
+
+1. **Diálogo de bienvenida** — Fondo verde profundo, logo, tipografía, ondas y acciones «Escuchar emisora» (`#reproductor-en-linea`) y «Conocer nuestra historia» (`quienessomos.html`). `sessionStorage` clave `hdl-welcome-seen`. Escape, cierre, trampa de foco, `inert`/bloqueo de página, `prefers-reduced-motion`. Solo en Inicio. Sin audio adicional.
+2. **Barra superior y menú** — Una fila en ≥1280px; apilado cuando no cabe. Marca con ancho controlado; menú `navbar-expand-xl` para evitar solapamiento. En ~390px, columna y sin overflow horizontal (`html`/`body` `overflow-x: hidden`; ondas recortadas).
+3. **Reproductor** — `.radio-stage` como pieza principal (verde/oro, jerarquía, glow, ondas). Iframe USastreams **sin cambio de URL**. No se afirma que el stream esté al aire.
+4. **Facebook** — Página `https://www.facebook.com/HistoriadeunLegado`. Plugin compacto (`height=150`, sin `tabs=timeline`) + fallback con «Visitar Facebook». El encabezado del plugin cargó (nombre y contador que envía Facebook). El mural/timeline **no se muestra** en este entorno; no se fabrica contenido.
+5. **Hover/foco de tarjetas e imágenes** — Elevación y zoom leve en tarjetas/fotos seleccionadas; foco visible; desactivado con `prefers-reduced-motion`. Diploma sin `object-fit: cover`.
+6. **Pie** — Sin columna «Navegación». Identidad + descripción | contacto (teléfono, WhatsApp, correo, enlace a políticas). Frase redundante eliminada.
+7. **Créditos y copyright** — Una línea de créditos (RojasTech → `https://rojastech.online`) + iconos sociales; debajo, centrado: `Copyright © 2026 Emisora Historia de un Legado`.
+8. **Galería de reconocimiento** — Cuatro fotos; `Reconocimiento3.jpeg` destacado con `object-fit: contain`. Lightbox propio: diploma completo visible (~922×748 en viewport 1440), Escape, cierre, foco en «Cerrar imagen ampliada».
+
+### Validaciones de esta iteración
+
+| Comprobación | Resultado |
+| --- | --- |
+| Cabecera 1440px | Ubicación e institucionales en una fila; menú sin solaparse con la marca |
+| Cabecera 1199px | Hamburguesa (`navbar-expand-xl`); institucionales debajo de la ubicación |
+| ~390px | Sin overflow (`scrollWidth === 390` tras el recorte); menú hamburguesa |
+| Bienvenida | Acciones, Escape y sesión comprobados en sesión previa; recarga no reabre el diálogo |
+| Iframe radio | URL USastreams intacta; contenedor 100% de ancho. Stream en vivo **no verificado** |
+| Facebook | Plugin de cabecera visible; fallback «Visitar Facebook» visible; timeline **no cargó** |
+| Lightbox diploma | Diploma completo y legible; Escape cierra |
+| Pie en las seis páginas | Sin columna de navegación; créditos + copyright; HTTP 200 en las seis |
+| PHP `mail()` | Sin cambios; entrega **no verificada** |
+
+## Refinamiento visual dirigido — 17 de octubre de 2026
+
+Cuatro ajustes sobre el estado local. Sin commit ni push. Sin cambios de PHP, donaciones, historia, pie, stream ni políticas.
+
+### Archivos
+
+- `index.html` — una sola tarjeta de Facebook (sin iframe); reproductor sin cambio de URL.
+- `quienessomos.html` — carrusel horizontal de las cuatro fotos de reconocimiento; lightbox reutilizado.
+- `css/site.css` — tarjeta Facebook, carrusel, sombras/hover, tarjeta de radio esmeralda.
+- `js/site.js` — se eliminó el plugin de Facebook; se añadió el carrusel (IntersectionObserver, controles, auto-avance lento que se detiene al interactuar).
+
+### Cambios
+
+1. **Facebook** — Una tarjeta: logo, icono Bootstrap, «Síguenos en Facebook», frase de invitación y botón «Visitar Facebook» → `https://www.facebook.com/HistoriadeunLegado/` (`target="_blank"` `rel="noopener noreferrer"`). **0 iframes** de Facebook. Sin avisos de mural ni cifras inventadas.
+2. **Reconocimiento** — Carrusel de una fila (imágenes 1–4, todas `naturalWidth` > 0, `object-fit: contain`). Diploma (`Reconocimiento3.jpeg`) completo. Controles prev/next, indicadores, «Imagen n de 4», flechas de teclado, entrada LTR al entrar en vista, auto 8 s pausado/cancelado al usar controles, `prefers-reduced-motion` sin entrada ni auto. Lightbox existente: diploma ampliado, Escape, foco en cerrar. Texto del 10 de septiembre de 2026 **una sola vez**.
+3. **Hover** — Sombras laterales perceptibles (`0 12px 28px` en reposo en fotos de fundador) y elevación/escala leve en tarjetas y fotos; diploma sin escala; `prefers-reduced-motion` anula transformaciones.
+4. **Radio** — Tarjeta oscura alineada al diálogo de bienvenida (verde/oro, glow, ondas). Iframe USastreams visible (desktop y ~287×95 px en 390px). URL **sin cambio**. No se afirma que el stream esté al aire.
+
+### Validación
+
+| Comprobación | Resultado |
+| --- | --- |
+| Facebook: una tarjeta, sin iframe de timeline | Confirmado (0 iframes de Facebook; 1 `.facebook-card`) |
+| Botón Facebook | `href` verificado a la página oficial |
+| Cuatro fotos del carrusel | Cargan; prev/next e indicadores mueven a 1–4 |
+| Diploma sin recorte | `object-fit: contain`; documento completo en carrusel y lightbox |
+| Lightbox | Abre al pulsar el diploma; Escape cierra; foco en «Cerrar imagen ampliada» |
+| ~390px | Carrusel usable; diploma visible; `scrollWidth === 390` |
+| Hover fundador | Sombra en reposo medida; transiciones `transform, box-shadow` |
+| Iframe radio | Misma URL; visible en escritorio y 390px |
+| Texto de reconocimiento | Un solo `h2` en la sección |
+
+Limitaciones: el audio del stream no se verificó como «en vivo». El hover se comprobó en fotos reales (sombra y CSS); no se simuló el puntero encima de cada imagen.
+
 ## Git (sin commit)
 
 ```
