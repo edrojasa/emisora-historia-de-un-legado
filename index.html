@@ -1,189 +1,59 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Emisora Historia de Un Legado</title>
+        <meta name="description" content="Emisora Historia de un Legado: radio comunitaria virtual desde el Barrio Potosí, Ciudad Bolívar, Bogotá. Voces que inspiran, historias que transforman.">
+        <meta name="author" content="Emisora Historia de un Legado">
+        <title>Inicio | Emisora Historia de un Legado</title>
         <link rel="shortcut icon" href="images/icons/favicon.png">
-
-        <!-- CSS FILES -->        
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
         <link href="css/bootstrap-icons.css" rel="stylesheet">
-
         <link href="css/templatemo-kind-heart-charity.css" rel="stylesheet">
-<!--
-
--->
-
+        <link href="css/site.css" rel="stylesheet">
     </head>
-    
     <body id="section_1">
+        <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
 
-        <!-- Popup (Modal) -->
-<div id="welcomePopup" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <p class="highlighted-text">🎙️ <strong>Erasmo Angarita Tovar y su grupo de trabajo</strong></p>
-        <h2>Les dan la bienvenida a</h2>
-        <h1 class="radio-title">📻 Emisora Historia de un Legado 🎶</h1>
-    </div>
-</div>
-
-<!-- Estilos CSS Mejorados -->
-<style>
-    /* Fondo del modal */
-    .modal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro más fuerte */
-        animation: fadeIn 0.5s ease-in-out;
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    /* Contenedor del contenido */
-    .modal-content {
-        background: linear-gradient(135deg, #1a750d, #ffffff); /* Degradado más llamativo */
-        padding: 35px;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-        max-width: 600px; /* Popup más grande */
-        position: relative;
-        color: black; /* Texto negro para mejor visibilidad */
-        font-family: 'Arial', sans-serif;
-        opacity: 0.97;
-        animation: zoomIn 0.5s ease-in-out;
-        border: 2px solid #ffffff; /* Borde elegante */
-    }
-
-    /* Botón de cierre */
-    .close {
-        position: absolute;
-        top: 12px;
-        right: 18px;
-        font-size: 26px;
-        font-weight: bold;
-        color: black;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .close:hover {
-        color: #444;
-    }
-
-    /* Texto destacado */
-    .highlighted-text {
-        font-size: 22px;
-        font-weight: bold;
-        color: #e9bc06; /* Amarillo vibrante */
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        margin-bottom: 10px;
-    }
-
-    /* Estilo para el título principal */
-    .radio-title {
-        font-size: 28px;
-        font-weight: bold;
-        color: white;
-        background: linear-gradient(90deg, #ff3d00, #ffbd00); /* Degradado tipo radio */
-        padding: 10px 15px;
-        border-radius: 10px;
-        display: inline-block;
-        margin-top: 10px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Animaciones */
-    @keyframes fadeIn {
-        from { opacity: 0; visibility: hidden; }
-        to { opacity: 1; visibility: visible; }
-    }
-
-    @keyframes zoomIn {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-</style>
-
-<!-- JavaScript para abrir y cerrar el popup -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var popup = document.getElementById("welcomePopup");
-        popup.style.visibility = "visible";
-        popup.style.opacity = "1";
-    });
-
-    function closePopup() {
-        var popup = document.getElementById("welcomePopup");
-        popup.style.visibility = "hidden";
-        popup.style.opacity = "0";
-    }
-</script>
-
+        <div id="welcomePopup" class="welcome-dialog" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-hidden="true">
+            <div class="welcome-dialog-content">
+                <button type="button" class="close-dialog" aria-label="Cerrar bienvenida">&times;</button>
+                <p class="mb-2"><strong>Erasmo Angarita Tovar y su grupo de trabajo</strong></p>
+                <h2 id="welcome-title">Les dan la bienvenida a</h2>
+                <p class="radio-hero-title">Emisora Historia de un Legado</p>
+            </div>
+        </div>
 
         <header class="site-header">
+            <div class="top-info-bar">
+                <div class="container">
+                    <p class="top-location">
+                        <i class="bi-geo-alt-fill me-1" aria-hidden="true"></i>
+                        Barrio Potosí · Localidad de Ciudad Bolívar · Bogotá D.C., Colombia
+                    </p>
+                    <nav class="institutional-links" aria-label="Enlaces institucionales">
+                        <a href="https://www.presidencia.gov.co/" target="_blank" rel="noopener noreferrer">Presidencia de la República de Colombia</a>
+                        <a href="https://bogota.gov.co/" target="_blank" rel="noopener noreferrer">Alcaldía Mayor de Bogotá</a>
+                        <a href="https://www.ciudadbolivar.gov.co/" target="_blank" rel="noopener noreferrer">Alcaldía Local de Ciudad Bolívar</a>
+                    </nav>
+                </div>
+            </div>
             <div class="container">
-                <div class="row">
-                    
-                    <div class="col-lg-8 col-12 d-flex flex-wrap">
-                        <p class="d-flex me-4 mb-0">
-                            <i class="bi-geo-alt me-2"></i>
-                            Colombia, Bogota D.C. Carrera 42 · 79-12 Sur 
-                        </p>
-
-                        <p class="d-flex mb-0">
-                            <i class="bi-envelope me-2"></i>
-
-                            <a href="mailto:info@company.com">
-                                emisorahistoria@emisorahistoriadeunlegado.org
-                            </a>
-                        </p>
+                <div class="row align-items-center">
+                    <div class="col-lg-8 col-12">
+                        <div class="header-contact">
+                            <a href="mailto:emisorahistoria@emisorahistoriadeunlegado.org"><i class="bi-envelope me-1" aria-hidden="true"></i> emisorahistoria@emisorahistoriadeunlegado.org</a>
+                            <a href="tel:+573142444009"><i class="bi-telephone me-1" aria-hidden="true"></i> 314 244 4009</a>
+                            <a href="https://wa.me/573142444009" target="_blank" rel="noopener noreferrer"><i class="bi-whatsapp me-1" aria-hidden="true"></i> WhatsApp</a>
+                        </div>
                     </div>
-
-                    <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">
+                    <div class="col-lg-4 col-12 mt-2 mt-lg-0 text-lg-end">
                         <ul class="social-icon">
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-twitter"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="https://www.facebook.com/erasmo.angaritatovar/" class="social-icon-link bi-facebook"></a>
-                            </li>
-                            <li class="social-icon-item">
-                                <a href="https://www.facebook.com/HistoriadeunLegado/about" class="social-icon-link bi-facebook"></a>
-                            </li>
-                            <li class="social-icon-item">
-                                <a href="https://www.facebook.com/EMISORAHistoriaDeUnLegado/" class="social-icon-link bi-facebook"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-instagram"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="https://www.youtube.com/@Historiadeunlegado" class="social-icon-link bi-youtube"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="https://wa.me/573142444009" class="social-icon-link bi-whatsapp"></a>
-                            </li>
+                            <li class="social-icon-item"><a href="https://www.facebook.com/HistoriadeunLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Historia de un Legado"></a></li>
+                            <li class="social-icon-item"><a href="https://www.youtube.com/@Historiadeunlegado" class="social-icon-link bi-youtube" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube Historia de un legado"></a></li>
+                            <li class="social-icon-item"><a href="https://wa.me/573142444009" class="social-icon-link bi-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de la emisora"></a></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </header>
@@ -191,495 +61,209 @@
         <nav class="navbar navbar-expand-lg bg-light shadow-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" class="logo img-fluid" alt="Kind Heart Charity" style="width: 100px; height: auto;">
+                    <img src="images/logo.png" class="logo img-fluid" alt="Emisora Historia de un Legado">
                     <span>
-                        EMISORA
-                        <small>Historia de un Legado</small>
+                        Emisora Historia de un Legado
+                        <small>Voces que inspiran, historias que transforman.</small>
                     </span>
                 </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <style>
-                        .navbar-nav .nav-link.active {
-                            color: #ff3d00 !important;
-                            font-weight: 700;
-                            border-bottom: 3px solid #ff3d00;
-                            padding-bottom: 5px;
-                        }
-                    </style>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll active" href="index.html">Inicio</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="quienessomos.html">Quienes Somos</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="programacion.html">Programacion</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="contactos.html">Contactos</a>
-                        </li>                        
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="politicas.html">Politicas de Privacidad</a>
-                        </li>
-
-                        <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="donate.html">Donaciones</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="quienessomos.html">Quiénes Somos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="programacion.html">Programación</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contactos.html">Contáctanos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="politicas.html">Política de Privacidad</a></li>
+                        <li class="nav-item ms-lg-2"><a class="nav-link custom-btn custom-border-btn btn" href="donate.html">Donaciones</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main>
-
+        <main id="contenido-principal">
             <section class="hero-section hero-section-full-height">
                 <div class="container-fluid">
                     <div class="row">
-
                         <div class="col-lg-12 col-12 p-0">
                             <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="images/slide/volunteer-helping-with-donation-box.jpg" class="carousel-image img-fluid" alt="...">
-                                        
+                                        <img src="images/slide/volunteer-helping-with-donation-box.jpg" class="carousel-image img-fluid" alt="Personas colaborando en una jornada comunitaria">
                                         <div class="carousel-caption d-flex flex-column justify-content-end">
-                                            <h1>Emisora</h1>
-                                            
+                                            <h1>Emisora Historia de un Legado</h1>
                                             <p>Dirigida por Erasmo Angarita Tovar</p>
                                         </div>
                                     </div>
-
                                     <div class="carousel-item">
-                                        <img src="images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg" class="carousel-image img-fluid" alt="...">
-                                        
+                                        <img src="images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg" class="carousel-image img-fluid" alt="Voluntariado organizado en un espacio de apoyo social">
                                         <div class="carousel-caption d-flex flex-column justify-content-end">
-                                            <h1>HISTORIA</h1>
-                                            <h1>DE UN LEGADO</h1>
-                                            
-                                            <p>Dejando huella desde el año 1999 </p>
+                                            <h1>Historia de un Legado</h1>
+                                            <p>Dejando huella desde el año 1999</p>
                                         </div>
                                     </div>
-
                                     <div class="carousel-item">
-                                        <img src="images/slide/medium-shot-people-collecting-donations.jpg" class="carousel-image img-fluid" alt="...">
-                                        
+                                        <img src="images/slide/medium-shot-people-collecting-donations.jpg" class="carousel-image img-fluid" alt="Grupo de personas reunidas en una actividad de servicio">
                                         <div class="carousel-caption d-flex flex-column justify-content-end">
-                                            <h1>Servicio Social</h1>
-                                            
-                                            <p>Sirviendo a nuestra comunidad </p>
+                                            <h1>Servicio social</h1>
+                                            <p>Sirviendo a nuestra comunidad</p>
                                         </div>
                                     </div>
                                 </div>
-
                                 <button class="carousel-control-prev" type="button" data-bs-target="#hero-slide" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
+                                    <span class="visually-hidden">Anterior</span>
                                 </button>
-
                                 <button class="carousel-control-next" type="button" data-bs-target="#hero-slide" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
+                                    <span class="visually-hidden">Siguiente</span>
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
 
-<section class="section-padding radio-bg">
-<div class="container">
-<div class="row">
+            <section class="section-padding radio-bg">
+                <div class="container">
+                    <div class="page-intro">
+                        <p class="page-kicker">Escúchanos</p>
+                        <h2>Bienvenidos a Emisora Historia de un Legado</h2>
+                        <p>Voces que inspiran, historias que transforman.</p>
+                    </div>
+                    <div class="radio-section text-center">
+                        <div class="sound-waves" aria-hidden="true">
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                        </div>
+                        <div class="radio-header">
+                            <div class="radio-logo">
+                                <img src="images/logo.png" alt="Emisora Historia de un Legado">
+                            </div>
+                            <div>
+                                <div class="radio-title">Streaming de Emisora Historia de un Legado</div>
+                                <div class="radio-subtitle">Reproductor en línea para escuchar nuestra programación</div>
+                            </div>
+                        </div>
+                        <div class="radio-player">
+                            <iframe
+                                name="contenedorPlayer"
+                                title="Reproductor de Emisora Historia de un Legado"
+                                allow="autoplay"
+                                scrolling="no"
+                                loading="eager"
+                                src="https://cp.usastreams.com/pr2g/APPlayerRadioHTML5.aspx?stream=https://panel.virtualtecnologe.com:8110/;&fondo=05&formato=mpeg&color=7&titulo=2&autoStart=1&vol=5&tipo=2&nombre=HISTORIA+DE+UN+LEGADO&imagen=https://cp.usastreams.com/playerHTML5/img/equalizer1.gif"></iframe>
+                        </div>
+                        <p class="radio-status">Reproductor de audio en línea</p>
+                    </div>
+                </div>
+            </section>
 
-<div class="col-lg-10 col-12 text-center mx-auto">
-<h2 class="mb-5">Bienvenidos a Emisora Historia De Un Legado</h2>
-</div>
-
-<style>
-
-/* fondo azul marino suave */
-.radio-bg{
-background:#eef3f9;
-padding:60px 0;
-}
-
-/* contenedor principal */
-
-.radio-section{
-max-width:750px;
-margin:auto;
-background:#ffffff;
-border-radius:15px;
-padding:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-transition:all 0.3s ease;
-position:relative;
-overflow:hidden;
-}
-
-.radio-section:hover{
-transform:scale(1.02);
-box-shadow:0 0 25px rgba(0,180,0,0.5);
-}
-
-/* ondas de sonido animadas */
-
-.sound-waves{
-position:absolute;
-left:50%;
-top:55%;
-transform:translate(-50%,-50%);
-opacity:0.08;
-pointer-events:none;
-}
-
-.wave{
-width:220px;
-height:220px;
-border-radius:50%;
-border:3px solid #1f3c88;
-position:absolute;
-animation:wave 3s infinite;
-}
-
-.wave:nth-child(2){
-animation-delay:1s;
-}
-
-.wave:nth-child(3){
-animation-delay:2s;
-}
-
-@keyframes wave{
-0%{
-transform:scale(0.5);
-opacity:0.4;
-}
-100%{
-transform:scale(1.6);
-opacity:0;
-}
-}
-
-/* encabezado */
-
-.radio-header{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:25px;
-margin-bottom:20px;
-flex-wrap:wrap;
-position:relative;
-z-index:2;
-}
-
-/* logo */
-
-.radio-logo img{
-width:120px;
-height:120px;
-object-fit:contain;
-}
-
-/* textos */
-
-.radio-title{
-font-size:24px;
-font-weight:bold;
-color:#222;
-}
-
-.radio-subtitle{
-font-size:16px;
-color:#555;
-margin-top:5px;
-}
-
-/* reproductor */
-
-.radio-player{
-margin-top:20px;
-position:relative;
-z-index:2;
-}
-
-.radio-player iframe{
-border:none;
-border-radius:10px;
-width:100%;
-max-width:420px;
-height:95px;
-}
-
-/* indicador en vivo */
-
-.radio-live{
-margin-top:15px;
-font-size:15px;
-font-weight:600;
-color:#c40000;
-position:relative;
-z-index:2;
-}
-
-.live-dot{
-display:inline-block;
-width:10px;
-height:10px;
-background:red;
-border-radius:50%;
-margin-right:6px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%{opacity:1;}
-50%{opacity:0.2;}
-100%{opacity:1;}
-}
-
-</style>
-
-<div class="radio-section text-center">
-
-<!-- ondas animadas -->
-<div class="sound-waves">
-<div class="wave"></div>
-<div class="wave"></div>
-<div class="wave"></div>
-</div>
-
-<div class="radio-header">
-
-<div class="radio-logo">
-<img src="images/logo.png" alt="Logo Emisora">
-</div>
-
-<div>
-<div class="radio-title">🎧 Streaming Emisora Historia De Un Legado</div>
-<div class="radio-subtitle">Escúchanos en vivo 24/7 y disfruta nuestra programación</div>
-</div>
-
-</div>
-
-<div class="radio-player">
-
-<iframe 
-name="contenedorPlayer"
-allow="autoplay"
-scrolling="no"
-src="https://cp.usastreams.com/pr2g/APPlayerRadioHTML5.aspx?stream=https://panel.virtualtecnologe.com:8110/;&fondo=05&formato=mpeg&color=7&titulo=2&autoStart=1&vol=5&tipo=2&nombre=HISTORIA+DE+UN+LEGADO&imagen=https://cp.usastreams.com/playerHTML5/img/equalizer1.gif">
-</iframe>
-
-</div>
-
-<div class="radio-live">
-<span class="live-dot"></span> EN VIVO
-</div>
-
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="section-padding fanpage-section">
-<div class="container">
-
-<div class="text-center mb-5">
-<h2>📘 Fan Page</h2>
-<p>Sigue nuestras últimas publicaciones y novedades en Facebook</p>
-</div>
-
-<div class="row justify-content-center">
-<div class="col-lg-7">
-
-<div class="facebook-box">
-
-<iframe 
-src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/HistoriadeunLegado&tabs=timeline&width=500&height=650"
-width="100%"
-height="650"
-style="border:none;overflow:hidden"
-scrolling="no"
-frameborder="0"
-allowfullscreen="true"
-allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-</iframe>
-
-</div>
-
-</div>
-</div>
-
-</div>
-</section>
-
-<style>
-
-/* fondo azul claro de la sección */
-.fanpage-section{
-background:#eaf3ff;
-padding:60px 0;
-}
-
-/* contenedor del feed */
-.facebook-box{
-background:#ffffff;
-border-radius:12px;
-padding:15px;
-transition:box-shadow 0.35s ease;
-}
-
-/* efecto hover elegante sin zoom */
-.facebook-box:hover{
-box-shadow:0 18px 45px rgba(24,119,242,0.45);
-}
-
-/* bordes del iframe */
-.facebook-box iframe{
-border-radius:10px;
-}
-
-</style>
-
+            <section class="section-padding fanpage-section">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <h2>Fan page</h2>
+                        <p>Sigue nuestras publicaciones y novedades en Facebook</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="facebook-box">
+                                <iframe
+                                    title="Fan page de Facebook Historia de un Legado"
+                                    src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/HistoriadeunLegado&tabs=timeline&width=500&height=650"
+                                    width="100%"
+                                    height="650"
+                                    style="border:none;overflow:hidden"
+                                    scrolling="no"
+                                    allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section class="section-padding section-bg">
                 <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                            <img src="images/group-people-volunteering-foodbank-poor-people.jpg" class="custom-text-box-image img-fluid" alt="">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-12 mb-4 mb-lg-0">
+                            <img src="images/group-people-volunteering-foodbank-poor-people.jpg" class="custom-text-box-image img-fluid" alt="Personas reunidas en una jornada de apoyo comunitario">
                         </div>
-
                         <div class="col-lg-6 col-12">
                             <div class="custom-text-box">
-                                <h2 class="mb-2">UN LEGADO</h2>
-
+                                <h2 class="mb-2">Un legado</h2>
                                 <h5 class="mb-3">Conozca nuestra historia</h5>
-
-                                <p class="mb-0">Un legado de 25 años sirviendo con pasión y entrega, transformando vidas y construyendo un futuro mejor.</p>
+                                <p>Un legado de servicio con pasión y entrega, que busca transformar vidas y construir un futuro mejor.</p>
+                                <p>El poder transformador de la comunicación: a través de la palabra, el compromiso y la acción, construimos puentes donde otros ven muros. La comunicación no solo informa, transforma.</p>
+                                <a class="custom-btn btn mt-2" href="quienessomos.html">Leer Quiénes Somos</a>
                             </div>
-                            
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-12">
-                                    <div class="custom-text-box mb-lg-0">
-                                        <h5 class="mb-3">"El Poder Transformador de la Comunicación"</h5>
-
-                                        <p>"A través de la palabra, el compromiso y la acción, construimos puentes donde otros ven muros. La comunicación no solo informa, transforma. Porque cada historia contada con el corazón acerca a las personas, despierta conciencias y revela la belleza de la vida en su máxima expresión. Sigamos creyendo en el poder de hacer el bien, porque el mundo necesita más voces que inspiren y más almas que escuchen.".</p>
-
-                                 
+                        </div>
+                    </div>
+                </div>
             </section>
-
 
             <section class="about-section section-padding">
                 <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-md-5 col-12">
-                            <img src="images/portrait-volunteer-who-organized-donations-charity.jpg" class="about-image ms-lg-auto bg-light shadow-lg img-fluid" alt="">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-5 col-12 mb-4 mb-md-0">
+                            <img src="images/portrait-volunteer-who-organized-donations-charity.jpg" class="about-image img-fluid" alt="Retrato asociado a la dirección de la emisora">
                         </div>
-
                         <div class="col-lg-5 col-md-7 col-12">
                             <div class="custom-text-block">
-                                <h2 class="mb-0">Erasmo Angarita</h2>
-
-                                <p class="text-muted mb-lg-4 mb-md-4">Director</p>
-
-                                <p>El 22 de Agosto de 2015 el Programa Social Policía Comunidad, liderado por Erasmo Angarita Tovar, Ex alumno de ACPO – 1993, su Equipo de Trabajo y el concurso de Ex alumnos ACPO de todos los tiempos, Ex funcionarios, Educadores, Directivas de ACPO y amigos de la Educación Fundamental Integral e Instituciones públicas y privadas.
-
-                                    Revivimos este legado de Monseñor José Joaquín Salcedo, con la apertura de la Emisora Virtual HIstoria de un Legado.</p>
-                    </div>
-            </section>
-            <section class="contact-section section-padding">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
-                            <div class="contact-info-wrap">
-                                <h2>Contactanos</h2>
-
-                                <div class="contact-image-wrap d-flex flex-wrap">
-                                    <img src="images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg" class="img-fluid avatar-image" alt="">
-
-                                    <div class="d-flex flex-column justify-content-center ms-3">
-                                        <p class="mb-0">Erasmo Angarita Tovar:</p>
-                                        <p class="mb-0"><strong>Director</strong></p>
-                                    </div>
-                                </div>
-
-                                <div class="contact-info">
-                                    <h5 class="mb-3">Informacion de Contacto</h5>
-
-                                    <p class="d-flex mb-2">
-                                        <i class="bi-geo-alt me-2"></i>
-                                        Colombia, Bogota D.C. Ciudad Bolivar
-                                    </p>
-
-                                    <p class="d-flex mb-2">
-                                        <i class="bi-telephone me-2"></i>
-
-                                        <a href="tel: 3142444009">
-                                            57+3142444009
-                                        </a>
-                                    </p>
-                                    <p class="d-flex mb-2">
-                                        <i class="bi-telephone me-2"></i>
-
-                                        <a href="tel: 3142444009">
-                                            57+3008411619
-                                        </a>
-                                    </p>
-
-                                    <p class="d-flex">
-                                        <i class="bi-envelope me-2"></i>
-
-                                        <a href="mailto:emisorahistoria@emisorahistoriadeunlegado.org">
-                                            emisorahistoria@emisorahistoriadeunlegado.org
-                                        </a>
-                                    </p>
-
-                                    <a href="#" class="custom-btn btn mt-3">Contactos</a>
-                                </div>
+                                <h2 class="mb-0">Erasmo Angarita Tovar</h2>
+                                <p class="text-muted mb-3">Director</p>
+                                <p>El 22 de agosto de 2015, el Programa Social Policía Comunidad, liderado por Erasmo Angarita Tovar, exalumno de ACPO en 1993, su equipo de trabajo y el concurso de exalumnos, educadores y amigos de la Educación Fundamental Integral, revivió el legado de monseñor José Joaquín Salcedo con la apertura de la emisora virtual Historia de un Legado.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
 
-                        <div class="col-lg-5 col-12 mx-auto">
-                            <form class="custom-form contact-form" action="https://formspree.io/f/xpwpywzd" method="post" role="form">
+            <section class="contact-section section-padding" id="informacion-contacto">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-12 mb-5 mb-lg-0">
+                            <div class="contact-info-wrap">
+                                <h2>Contáctanos</h2>
+                                <p class="mb-1"><strong>Erasmo Angarita Tovar</strong></p>
+                                <p>Director</p>
+                                <h3 class="h5 mb-3">Información de contacto</h3>
+                                <p><i class="bi-geo-alt me-2" aria-hidden="true"></i> Barrio Potosí, Localidad de Ciudad Bolívar, Bogotá D.C., Colombia</p>
+                                <p><i class="bi-telephone me-2" aria-hidden="true"></i> <a href="tel:+573142444009">314 244 4009</a></p>
+                                <p><i class="bi-envelope me-2" aria-hidden="true"></i> <a href="mailto:emisorahistoria@emisorahistoriadeunlegado.org">emisorahistoria@emisorahistoriadeunlegado.org</a></p>
+                                <a class="whatsapp-btn mt-2" href="https://wa.me/573142444009" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi-whatsapp" aria-hidden="true"></i> Contáctanos por WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12 mx-auto">
+                            <form class="custom-form contact-form" action="enviar_correo.php" method="post" id="formulario-contacto" novalidate>
                                 <h2>Formulario de contacto</h2>
-
-                                <p class="mb-4">Puedes enviar un correo electrónico:
-                                    <a href="#">emisorahistoria@emisorahistoriadeunlegado.org</a>
-                                </p>
+                                <div id="form-feedback" class="form-feedback" hidden></div>
+                                <p class="mb-4">También puedes escribir a <a href="mailto:emisorahistoria@emisorahistoriadeunlegado.org">emisorahistoria@emisorahistoriadeunlegado.org</a></p>
+                                <input type="hidden" name="origen" value="index.html">
+                                <label class="hp-field" for="empresa-home" aria-hidden="true">Empresa</label>
+                                <input class="hp-field" type="text" name="empresa" id="empresa-home" tabindex="-1" autocomplete="off" aria-hidden="true">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <input type="text" name="first-name" id="first-name" class="form-control" placeholder="Nombre" required>
+                                    <div class="col-lg-6 col-12">
+                                        <label for="first-name">Nombre</label>
+                                        <input type="text" name="first-name" id="first-name" class="form-control" required maxlength="80" autocomplete="given-name">
                                     </div>
-
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Apellido" required>
+                                    <div class="col-lg-6 col-12">
+                                        <label for="last-name">Apellido</label>
+                                        <input type="text" name="last-name" id="last-name" class="form-control" required maxlength="80" autocomplete="family-name">
                                     </div>
                                 </div>
-
-                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="email" required>
-
-                                <textarea name="message" rows="5" class="form-control" id="message" placeholder="¿En qué podemos ayudarte?"></textarea>
-
-                                <button type="submit" class="form-control">Enviar Mensaje</button>
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" name="email" id="email" class="form-control" required maxlength="120" autocomplete="email">
+                                <label for="message">Mensaje</label>
+                                <textarea name="message" rows="5" class="form-control" id="message" required maxlength="4000"></textarea>
+                                <button type="submit" class="form-control">Enviar mensaje</button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -688,118 +272,65 @@ border-radius:10px;
         <footer class="site-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-12 mb-4">
-                        <img src="images/logo.png" class="logo img-fluid" alt="" style="width: 170px; height: auto;">
+                    <div class="col-lg-4 col-12 mb-4 footer-identity">
+                        <a href="index.html"><img src="images/logo.png" class="logo img-fluid mb-3" alt="Emisora Historia de un Legado"></a>
+                        <h2>Emisora Historia de un Legado</h2>
+                        <p class="footer-slogan">Voces que inspiran, historias que transforman.</p>
+                        <p class="footer-description">La Emisora Historia de un Legado es un medio de comunicación virtual que, desde 1999, trabaja con pasión y compromiso al servicio de la comunidad. Inspirada en el Legado Educativo de Monseñor José Joaquín Salcedo, promueve la comunicación como herramienta para educar, informar, unir y transformar vidas. A través de su programación y labor social, busca transmitir valores, compartir conocimientos y fortalecer los lazos comunitarios, dejando huellas positivas en la sociedad.</p>
+                        <p class="footer-description">¡Sintonízanos y sé parte de este legado que sigue haciendo historia!</p>
                     </div>
-
-                    <div class="col-lg-4 col-md-6 col-12 mb-4">
-                        <h5 class="site-footer-title mb-3">Enlaces rápidos</h5>
-
+                    <div class="col-lg-3 col-md-6 col-12 mb-4">
+                        <h3 class="site-footer-title h5 mb-3">Navegación</h3>
                         <ul class="footer-menu">
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Inicio</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Quienes Somos</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Programacion</a></li>
-                            
+                            <li class="footer-menu-item"><a href="index.html" class="footer-menu-link">Inicio</a></li>
+                            <li class="footer-menu-item"><a href="quienessomos.html" class="footer-menu-link">Quiénes Somos</a></li>
+                            <li class="footer-menu-item"><a href="programacion.html" class="footer-menu-link">Programación</a></li>
+                            <li class="footer-menu-item"><a href="contactos.html" class="footer-menu-link">Contáctanos</a></li>
+                            <li class="footer-menu-item"><a href="politicas.html" class="footer-menu-link">Política de Privacidad</a></li>
+                            <li class="footer-menu-item"><a href="donate.html" class="footer-menu-link">Donaciones</a></li>
                         </ul>
                     </div>
-
-                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
-                        <h5 class="site-footer-title mb-3">Informacion de Contacto</h5>
-
-                        <p class="text-white d-flex mb-2">
-                            <i class="bi-telephone me-2"></i>
-
-                            <a href="tel: 120-240-9600" class="site-footer-link">
-                                57+3142444009
-                            </a>
-                        </p>
-                        <p class="text-white d-flex mb-2">
-                            <i class="bi-telephone me-2"></i>
-
-                            <a href="tel: 120-240-9600" class="site-footer-link">
-                                57+3008411619
-                            </a>
-                        </p>
-
-                        <p class="text-white d-flex">
-                            <i class="bi-envelope me-2"></i>
-
-                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                emisorahistoria@emisorahistoriadeunlegado.org
-                            </a>
-                        </p>
-
-                        <p class="text-white d-flex mt-3">
-                            <i class="bi-geo-alt me-2"></i>
-                            Colombia, Bogota D.C. Ciudad Bolivar
-                        </p>
-
-                        
+                    <div class="col-lg-5 col-md-6 col-12">
+                        <h3 class="site-footer-title h5 mb-3">Información de contacto</h3>
+                        <p class="footer-hint">En la parte inferior de esta página encontrarás nuestra <a href="contactos.html#informacion-contacto">información de contacto</a> y las <a href="politicas.html#politica-privacidad">políticas de privacidad</a>.</p>
+                        <p><i class="bi-telephone me-2" aria-hidden="true"></i><a href="tel:+573142444009" class="site-footer-link">314 244 4009</a></p>
+                        <p><i class="bi-whatsapp me-2" aria-hidden="true"></i><a href="https://wa.me/573142444009" class="site-footer-link" target="_blank" rel="noopener noreferrer">Contáctanos por WhatsApp</a></p>
+                        <p><i class="bi-envelope me-2" aria-hidden="true"></i><a href="mailto:emisorahistoria@emisorahistoriadeunlegado.org" class="site-footer-link">emisorahistoria@emisorahistoriadeunlegado.org</a></p>
+                        <p><i class="bi-geo-alt me-2" aria-hidden="true"></i> Barrio Potosí, Localidad de Ciudad Bolívar, Bogotá D.C., Colombia</p>
+                        <nav class="footer-institutional mt-3" aria-label="Sitios institucionales">
+                            <a href="https://www.presidencia.gov.co/" target="_blank" rel="noopener noreferrer">Presidencia de la República de Colombia</a>
+                            <a href="https://bogota.gov.co/" target="_blank" rel="noopener noreferrer">Alcaldía Mayor de Bogotá</a>
+                            <a href="https://www.ciudadbolivar.gov.co/" target="_blank" rel="noopener noreferrer">Alcaldía Local de Ciudad Bolívar</a>
+                        </nav>
                     </div>
                 </div>
             </div>
-
             <div class="site-footer-bottom">
                 <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-md-7 col-12">
-                            <p class="copyright-text mb-0">Copyright © 2026 <a href="#">Emisora Historia De Un Legado</a>
-                                </a></p>
-                                <p class="copyright-text mb-0">
-Host y Streaming: <strong>Nelson Mora</strong> 
-Redacción: <strong>Diego Becerra</strong>
-</p>
-
-<p class="copyright-text mt-2">
-Desarrollado por: <strong><a href="https://rojastech.online" target="_blank">RojasTech</a></strong>
-</p>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 col-12">
+                            <p class="copyright-text mb-0">Copyright © 2026 Emisora Historia de un Legado</p>
+                            <p class="copyright-text mb-0">Host y streaming: <strong>Nelson Mora</strong> · Redacción: <strong>Diego Becerra</strong></p>
+                            <p class="copyright-text mt-2">Desarrollado por: <strong><a href="https://rojastech.online" target="_blank" rel="noopener noreferrer">RojasTech</a></strong></p>
                         </div>
-                        
-                        <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+                        <div class="col-lg-5 col-12 text-lg-end mt-3 mt-lg-0">
                             <ul class="social-icon">
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-twitter"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="https://www.facebook.com/erasmo.angaritatovar/" class="social-icon-link bi-facebook"></a>
-                                </li>
-                                <li class="social-icon-item">
-                                    <a href="https://www.facebook.com/HistoriadeunLegado/about" class="social-icon-link bi-facebook"></a>
-                                </li>
-                                <li class="social-icon-item">
-                                    <a href="https://www.facebook.com/EMISORAHistoriaDeUnLegado/" class="social-icon-link bi-facebook"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-instagram"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-linkedin"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="https://www.youtube.com/@Historiadeunlegado" class="social-icon-link bi-youtube"></a>
-                                </li>
+                                <li class="social-icon-item"><a href="https://www.facebook.com/HistoriadeunLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Historia de un Legado"></a></li>
+                                <li class="social-icon-item"><a href="https://www.facebook.com/erasmo.angaritatovar/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Erasmo Angarita Tovar"></a></li>
+                                <li class="social-icon-item"><a href="https://www.facebook.com/EMISORAHistoriaDeUnLegado/" class="social-icon-link bi-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de la emisora"></a></li>
+                                <li class="social-icon-item"><a href="https://www.youtube.com/@Historiadeunlegado" class="social-icon-link bi-youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube Historia de un legado"></a></li>
                             </ul>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </footer>
 
-        <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
-        <script src="js/click-scroll.js"></script>
         <script src="js/counter.js"></script>
         <script src="js/custom.js"></script>
-
+        <script src="js/site.js"></script>
     </body>
 </html>

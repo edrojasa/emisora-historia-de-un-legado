@@ -1,46 +1,92 @@
 <?php
-// Recibir datos por POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Escapar información para evitar inyección
-    $nombre = htmlspecialchars(trim($_POST["first-name"]));
-    $apellido = htmlspecialchars(trim($_POST["last-name"]));
-    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $mensaje = htmlspecialchars(trim($_POST["message"]));
+declare(strict_types=1);
 
-    // Validar campos obligatorios
-    if (empty($nombre) || empty($apellido) || empty($email) || empty($mensaje) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Por favor completa todos los campos correctamente.'); window.history.back();</script>";
-        exit;
+session_start();
+
+function redirect_with_status(string $page, string $status): void
+{
+    $allowed = ['contactos.html', 'index.html'];
+    if (!in_array($page, $allowed, true)) {
+        $page = 'contactos.html';
     }
-
-    // Configuración del correo
-    $destinatario = "emisorahistoria@emisorahistoriadeunlegado.org";
-    $asunto = "Nuevo mensaje de contacto desde la pagina web";
-
-    // Construir el mensaje
-    $contenido = "Has recibido un nuevo mensaje de contacto desde el formulario de la página web.\n\n";
-    $contenido .= "Detalles del remitente:\n";
-    $contenido .= "Nombre completo: " . $nombre . " " . $apellido . "\n";
-    $contenido .= "Email: " . $email . "\n";
-    $contenido .= "\nMensaje:\n" . $mensaje . "\n";
-
-    // Cabeceras (headers)
-    $headers = "From: " . $email . "\r\n";
-    $headers .= "Reply-To: " . $email . "\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-
-    // Intentar enviar el email
-    if (mail($destinatario, $asunto, $contenido, $headers)) {
-        // Mensaje de éxito
-        echo "<script>alert('Tu mensaje ha sido enviado exitosamente. Nos pondremos en contacto contigo pronto.'); window.location.href = 'contactos.html';</script>";
-    } else {
-        // Mensaje de error
-        echo "<script>alert('Hubo un error al enviar el mensaje. Por favor intenta más tarde o escríbenos directamente a $destinatario'); window.history.back();</script>";
-    }
-} else {
-    // Si alguien accede al archivo directamente sin POST, lo redirigimos
-    header("Location: contactos.html");
+    header('Location: ' . $page . '?estado=' . rawurlencode($status) . '#formulario-contacto');
     exit;
 }
-?>
+
+function has_header_injection(string $value): bool
+{
+    return (bool) preg_match("/[\r\n]/", $value);
+}
+
+function clean_text(string $value, int $maxLength): string
+{
+    $value = trim(str_replace(["\0"], '', $value));
+    $value = strip_tags($value);
+    if (function_exists('mb_substr')) {
+        $value = mb_substr($value, 0, $maxLength);
+    } else {
+        $value = substr($value, 0, $maxLength);
+    }
+    return $value;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: contactos.html');
+    exit;
+}
+
+$returnPage = isset($_POST['origen']) ? basename((string) $_POST['origen']) : 'contactos.html';
+
+// Honeypot: treat as success without sending.
+$honeypot = isset($_POST['empresa']) ? trim((string) $_POST['empresa']) : '';
+if ($honeypot !== '') {
+    redirect_with_status($returnPage, 'ok');
+}
+
+if (!empty($_SESSION['contact_last_submit']) && (time() - (int) $_SESSION['contact_last_submit']) < 20) {
+    redirect_with_status($returnPage, 'duplicado');
+}
+
+$nombre = isset($_POST['first-name']) ? clean_text((string) $_POST['first-name'], 80) : '';
+$apellido = isset($_POST['last-name']) ? clean_text((string) $_POST['last-name'], 80) : '';
+$email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
+$mensaje = isset($_POST['message']) ? clean_text((string) $_POST['message'], 4000) : '';
+
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+if ($nombre === '' || $apellido === '' || $email === '' || $mensaje === '') {
+    redirect_with_status($returnPage, 'error-campos');
+}
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    redirect_with_status($returnPage, 'error-email');
+}
+
+if (has_header_injection($nombre) || has_header_injection($apellido) || has_header_injection($email)) {
+    redirect_with_status($returnPage, 'error');
+}
+
+$destinatario = 'emisorahistoria@emisorahistoriadeunlegado.org';
+$remitenteControlado = 'emisorahistoria@emisorahistoriadeunlegado.org';
+$asunto = 'Nuevo mensaje de contacto desde la pagina web';
+
+$contenido = "Has recibido un nuevo mensaje de contacto desde el formulario de la página web.\n\n";
+$contenido .= "Nombre completo: " . $nombre . " " . $apellido . "\n";
+$contenido .= "Email: " . $email . "\n\n";
+$contenido .= "Mensaje:\n" . $mensaje . "\n";
+
+$headers = [];
+$headers[] = 'From: Emisora Historia de un Legado <' . $remitenteControlado . '>';
+$headers[] = 'Reply-To: ' . $email;
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-Type: text/plain; charset=UTF-8';
+$headers[] = 'X-Mailer: PHP/' . PHP_VERSION;
+
+$enviado = @mail($destinatario, $asunto, $contenido, implode("\r\n", $headers));
+
+if ($enviado) {
+    $_SESSION['contact_last_submit'] = time();
+    redirect_with_status($returnPage, 'ok');
+}
+
+redirect_with_status($returnPage, 'error-envio');
