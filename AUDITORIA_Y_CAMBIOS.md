@@ -205,6 +205,27 @@ Cuatro ajustes sobre el estado local. Sin commit ni push. Sin cambios de PHP, do
 
 Limitaciones: el audio del stream no se verificó como «en vivo». El hover se comprobó en fotos reales (sombra y CSS); no se simuló el puntero encima de cada imagen.
 
+## Parche quirúrgico — 17 de octubre de 2026
+
+Tres cambios puntuales. Sin commit ni push.
+
+1. **URL RojasTech** — En las seis páginas el crédito del pie apunta a `https://rojastech.com.co/` (texto RojasTech, `target`/`rel` iguales). En HTML/JS/CSS ya no queda `rojastech.online`.
+2. **Carrusel** — Transición por opacidad (`display: grid` apilado). Auto-avance cada 5,5 s al quedar visible, si no hay `prefers-reduced-motion`. Pausa con hover o foco; reanuda al salir. Las flechas e indicadores no cancelan el autoplay. Un solo `setInterval`. Diploma con `object-fit: contain`.
+3. **Hover de fotos** — Sombra de plantilla `0 1rem 3rem rgba(0,0,0,.175)` y elevación leve en `.custom-text-box-image`, `.about-image`, `.team-photo`, `.founder-image` y `main img.img-fluid.rounded-4`. Excluidos logos, Nequi/DaviPlata, QR, diploma y reproductor.
+
+### Validación
+
+| Comprobación | Resultado |
+| --- | --- |
+| Seis pies | `https://rojastech.com.co/` |
+| Autoplay (sin reduced-motion) | 1 → 2 en ~5,8 s; fade `opacity, visibility` |
+| Pausa hover / reanudación | Se mantuvo en 4 durante hover; al salir pasó a 1 |
+| Navegación manual | Siguiente funciona y no apaga el autoplay |
+| Reduced-motion nativo del navegador de prueba | Impidió autoplay hasta emular `no-preference` (comportamiento exigido) |
+| Fotos contenido | Sombra `0px 12px 28px` en reposo; transición transform/box-shadow |
+| Donaciones | Nequi/QR/logo sin esa sombra; sin overflow a 390px |
+| Stream / Facebook / texto de reconocimiento | Sin cambios |
+
 ## Git (sin commit)
 
 ```

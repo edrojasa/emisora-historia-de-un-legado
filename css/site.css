@@ -665,22 +665,34 @@ body.is-dialog-open {
 }
 
 .recognition-track {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   margin: 0;
   padding: 0;
   list-style: none;
-  transition: transform 0.55s ease;
-  will-change: transform;
 }
 
 .recognition-slide {
-  flex: 0 0 100%;
+  grid-column: 1;
+  grid-row: 1;
   min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px 18px;
   min-height: 280px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.recognition-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .recognition-open {
@@ -956,22 +968,27 @@ body.is-dialog-open {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  box-shadow: 0 0.75rem 1.75rem rgba(20, 32, 26, 0.16);
 }
 
+.content-photo,
 .custom-text-box-image,
 .about-image,
 .team-photo,
-.founder-image {
-  transition: transform 0.45s ease, box-shadow 0.45s ease;
+.founder-image,
+main img.img-fluid.rounded-4 {
+  box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.14);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+.content-photo:hover,
+.content-photo:focus-visible,
 .custom-text-box-image:hover,
 .about-image:hover,
 .team-photo:hover,
-.founder-image:hover {
-  transform: translateY(-8px) scale(1.025);
-  box-shadow: 0 1.25rem 3rem rgba(20, 32, 26, 0.22);
+.founder-image:hover,
+main img.img-fluid.rounded-4:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 }
 
 .facebook-card {
@@ -1289,9 +1306,16 @@ img {
   .about-image:hover,
   .team-photo:hover,
   .founder-image:hover,
+  .content-photo:hover,
+  main img.img-fluid.rounded-4:hover,
   .radio-section:hover,
   .recognition-slide:not(.is-diploma) .recognition-open:hover img {
     transform: none;
+  }
+
+  .recognition-slide,
+  .recognition-slide.is-active {
+    transition: none;
   }
 
   .recognition-viewport,
