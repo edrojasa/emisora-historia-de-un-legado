@@ -173,119 +173,29 @@
       return;
     }
 
-    var slides = root.querySelectorAll(".recognition-slide");
-    var prev = root.querySelector("[data-carousel-prev]");
-    var next = root.querySelector("[data-carousel-next]");
-    var dots = root.querySelectorAll("[data-carousel-dot]");
-    var status = root.querySelector("[data-carousel-status]");
-    var viewport = root.querySelector(".recognition-viewport");
-    var total = slides.length;
-    var index = 0;
-    var timer = null;
-
-    function goTo(nextIndex) {
-      index = (nextIndex + total) % total;
-      slides.forEach(function (slide, i) {
-        var active = i === index;
-        slide.classList.toggle("is-active", active);
-        slide.setAttribute("aria-hidden", active ? "false" : "true");
-        var openBtn = slide.querySelector(".recognition-open");
-        if (openBtn) {
-          openBtn.tabIndex = active ? 0 : -1;
-        }
-      });
-      dots.forEach(function (dot, i) {
-        dot.setAttribute("aria-selected", i === index ? "true" : "false");
-      });
-      if (status) {
-        status.textContent = "Imagen " + (index + 1) + " de " + total;
-      }
+    var track = root.querySelector(".recognition-track");
+    var set = root.querySelector(".recognition-set");
+    if (!track || !set) {
+      return;
     }
 
-    function isInteractionPaused() {
-      return root.matches(":hover") || root.contains(document.activeElement);
+    root.classList.add("is-inview");
+
+    if (reducedMotion || track.querySelector(".recognition-set.is-clone")) {
+      return;
     }
 
-    function stopAuto() {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
-    }
-
-    function startAuto() {
-      var lightbox = qs("mediaLightbox");
-      if (reducedMotion || total < 2 || isInteractionPaused()) {
-        return;
-      }
-      if (lightbox && lightbox.classList.contains("is-open")) {
-        return;
-      }
-      stopAuto();
-      timer = setInterval(function () {
-        goTo(index + 1);
-      }, 5500);
-    }
-
-    function reveal() {
-      root.classList.add("is-inview");
-      startAuto();
-    }
-
-    if (reducedMotion) {
-      reveal();
-    } else if ("IntersectionObserver" in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            reveal();
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.28 });
-      observer.observe(root);
-    } else {
-      reveal();
-    }
-
-    if (prev) {
-      prev.addEventListener("click", function () {
-        goTo(index - 1);
-      });
-    }
-    if (next) {
-      next.addEventListener("click", function () {
-        goTo(index + 1);
-      });
-    }
-    dots.forEach(function (dot, i) {
-      dot.addEventListener("click", function () {
-        goTo(i);
-      });
+    var clone = set.cloneNode(true);
+    clone.classList.add("is-clone");
+    clone.setAttribute("aria-hidden", "true");
+    clone.querySelectorAll("img").forEach(function (img) {
+      img.alt = "";
     });
-
-    if (viewport) {
-      viewport.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowLeft") {
-          event.preventDefault();
-          goTo(index - 1);
-        } else if (event.key === "ArrowRight") {
-          event.preventDefault();
-          goTo(index + 1);
-        }
-      });
-    }
-
-    root.addEventListener("mouseenter", stopAuto);
-    root.addEventListener("mouseleave", startAuto);
-    root.addEventListener("focusin", stopAuto);
-    root.addEventListener("focusout", function (event) {
-      if (!root.contains(event.relatedTarget)) {
-        startAuto();
-      }
+    clone.querySelectorAll("button").forEach(function (button) {
+      button.setAttribute("tabindex", "-1");
+      button.setAttribute("aria-hidden", "true");
     });
-
-    goTo(0);
+    track.appendChild(clone);
   }
 
   function initLightbox() {

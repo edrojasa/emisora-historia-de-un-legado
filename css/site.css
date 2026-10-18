@@ -642,57 +642,47 @@ body.is-dialog-open {
 }
 
 .recognition-carousel {
-  max-width: 920px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .recognition-viewport {
   overflow: hidden;
   border-radius: 18px;
+  padding: 28px 0;
   background:
     radial-gradient(circle at top, rgba(201, 162, 39, 0.16), transparent 55%),
     #0b1c14;
   border: 1px solid rgba(201, 162, 39, 0.35);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-  opacity: 0;
-  transform: translateX(-48px);
-}
-
-.recognition-carousel.is-inview .recognition-viewport {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.7s ease, transform 0.85s ease;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 
 .recognition-track {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  display: flex;
+  width: max-content;
+  animation: recognition-conveyor 42s linear infinite;
+}
+
+.recognition-carousel:hover .recognition-track {
+  animation-play-state: paused;
+}
+
+.recognition-set {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
 }
 
 .recognition-slide {
-  grid-column: 1;
-  grid-row: 1;
-  min-width: 0;
+  flex: 0 0 auto;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 18px;
-  min-height: 280px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity 0.7s ease, visibility 0.7s ease;
-}
-
-.recognition-slide.is-active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  z-index: 1;
+  width: min(280px, 68vw);
 }
 
 .recognition-open {
@@ -712,32 +702,38 @@ body.is-dialog-open {
   outline-offset: 4px;
 }
 
+.recognition-slide.is-diploma {
+  width: min(420px, 78vw);
+}
+
 .recognition-slide img {
   display: block;
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 360px;
+  max-height: 320px;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
   background: #0f241b;
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .recognition-slide.is-diploma img {
-  max-height: 380px;
+  max-height: 340px;
   background: #f7f3ea;
 }
 
-.recognition-open:hover img,
-.recognition-open:focus-visible img {
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4);
+@keyframes recognition-conveyor {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-.recognition-slide:not(.is-diploma) .recognition-open:hover img,
-.recognition-slide:not(.is-diploma) .recognition-open:focus-visible img {
-  transform: translateY(-4px);
+.recognition-open:focus-visible img {
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.48);
 }
 
 .recognition-controls {
@@ -862,11 +858,11 @@ body.is-dialog-open {
 .team-photo,
 .founder-image,
 .custom-image {
+  display: block;
   width: 100%;
   max-width: 320px;
   height: auto;
   border-radius: 16px;
-  box-shadow: 0 0.75rem 1.75rem rgba(20, 32, 26, 0.16);
   object-fit: cover;
 }
 
@@ -970,25 +966,31 @@ body.is-dialog-open {
   border-radius: var(--radius);
 }
 
-.content-photo,
-.custom-text-box-image,
-.about-image,
-.team-photo,
-.founder-image,
+main img.content-photo,
+main img.custom-text-box-image,
+main img.about-image,
+main img.team-photo,
+main img.founder-image,
 main img.img-fluid.rounded-4 {
-  box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.14);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow:
+    0 10px 18px rgba(12, 22, 18, 0.2),
+    0 22px 44px rgba(12, 22, 18, 0.28);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
 }
 
-.content-photo:hover,
-.content-photo:focus-visible,
-.custom-text-box-image:hover,
-.about-image:hover,
-.team-photo:hover,
-.founder-image:hover,
+main img.content-photo:hover,
+main img.custom-text-box-image:hover,
+main img.about-image:hover,
+main img.team-photo:hover,
+main img.founder-image:hover,
 main img.img-fluid.rounded-4:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 16px 28px rgba(12, 22, 18, 0.24),
+    0 28px 56px rgba(12, 22, 18, 0.32);
 }
 
 .facebook-card {
@@ -1245,12 +1247,19 @@ img {
   }
 
   .recognition-slide {
-    min-height: 240px;
-    padding: 12px;
+    width: min(220px, 72vw);
+  }
+
+  .recognition-slide.is-diploma {
+    width: min(280px, 82vw);
   }
 
   .recognition-slide img {
-    max-height: 280px;
+    max-height: 240px;
+  }
+
+  .recognition-slide.is-diploma img {
+    max-height: 260px;
   }
 
   .footer-credits-row {
@@ -1302,26 +1311,38 @@ img {
   .bank-card:hover,
   .correspondent-item:hover,
   .facebook-card:hover,
-  .custom-text-box-image:hover,
-  .about-image:hover,
-  .team-photo:hover,
-  .founder-image:hover,
-  .content-photo:hover,
+  main img.content-photo:hover,
+  main img.custom-text-box-image:hover,
+  main img.about-image:hover,
+  main img.team-photo:hover,
+  main img.founder-image:hover,
   main img.img-fluid.rounded-4:hover,
-  .radio-section:hover,
-  .recognition-slide:not(.is-diploma) .recognition-open:hover img {
+  .radio-section:hover {
     transform: none;
   }
 
-  .recognition-slide,
-  .recognition-slide.is-active {
-    transition: none;
+  .recognition-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
   }
 
-  .recognition-viewport,
-  .recognition-carousel.is-inview .recognition-viewport {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .recognition-set,
+  .recognition-set.is-clone {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+    gap: 16px;
+  }
+
+  .recognition-set.is-clone {
+    display: none;
+  }
+
+  .recognition-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow: visible;
   }
 }

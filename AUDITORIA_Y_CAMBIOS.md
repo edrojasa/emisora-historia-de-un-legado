@@ -226,6 +226,55 @@ Tres cambios puntuales. Sin commit ni push.
 | Donaciones | Nequi/QR/logo sin esa sombra; sin overflow a 390px |
 | Stream / Facebook / texto de reconocimiento | Sin cambios |
 
+## Corrección final — 17 de octubre de 2026
+
+Sin commit ni push.
+
+### Causas
+
+1. **Carrusel estático** — `startAuto()` salía si `prefers-reduced-motion` o si había hover/foco; el navegador de prueba tenía reduced-motion activo. `visibility: hidden` en diapositivas inactivas podía producir destellos.
+2. **Sombras poco visibles** — las fotos editoriales eran `inline` (el `box-shadow` casi no se pinta); el viewport del carrusel recortaba la sombra con `overflow: hidden`.
+3. **Reproductor ausente** — solo estaba en Inicio y Programación.
+
+### Correcciones
+
+- Carrusel: un `setInterval` de 4 s, bucle 4→1, sin pausa por hover/foco; autoplay también con reduced-motion (transición instantánea). Crossfade solo con `opacity`. Limpieza en `pagehide`.
+- Fotos: `display: block` y sombra doble visible en reposo; hover con elevación/escala fuera del carrusel. Logos, Nequi, QR y reproductor excluidos.
+- Reproductor USastreams (misma URL) al inicio de `main` en Quiénes Somos, Contáctanos, Políticas y Donaciones. Un iframe por página. No se añadió el rótulo «EN VIVO» (no formaba parte del diseño actual; el estado en vivo no está verificado).
+
+### Validación
+
+| Prueba | Resultado |
+| --- | --- |
+| Autoplay ~4 s con hover simulado | 3→4→1 (bucle) |
+| Autoplay con `prefers-reduced-motion: reduce` | 2→3 en ~4,2 s |
+| Iframe por página | 1 en Quiénes Somos, Contáctanos, Donaciones, Políticas (y las dos páginas que ya lo tenían) |
+| URL de stream | Sin cambio |
+| Sombra fundador en reposo | `0px 10px 18px` + `0px 22px 44px`; `display: block` |
+
+Limitación: el audio del stream no se comprobó como emisión en vivo. El visor de capturas a veces mostró otra pestaña; las mediciones de DOM/CDP sí corresponden a cada URL.
+
+## Corrección del carrusel — cinta continua (17 de octubre de 2026)
+
+Sin commit ni push. Alcance: `quienessomos.html`, `css/site.css`, `js/site.js` y este archivo.
+
+Se sustituyó el crossfade entre fotos por una cinta horizontal continua de derecha a izquierda (`translateX(0)` → `translateX(-50%)`, 42 s, lineal). El JavaScript duplica el grupo de imágenes (clon `aria-hidden`, `alt` vacío, `tabindex="-1"`) solo para el bucle; no hay `setInterval` ni lógica de diapositivas. El viewport usa `mask-image` con degradado de opacidad en los bordes (~7 % / 93 %). El puntero encima pausa con `animation-play-state`; al salir reanuda desde el mismo punto. `prefers-reduced-motion: reduce` anula la animación, no clona, envuelve las cuatro fotos y quita la máscara. Las cuatro imágenes, el orden, las proporciones del diploma (`object-fit: contain`) y las sombras se mantienen. Reproductor, navegación y resto de páginas sin cambios.
+
+### Validación
+
+| Prueba | Resultado |
+| --- | --- |
+| Movimiento RTL | `matrix` X de −397 a −447 en ~1,5 s y de −853 a −883 en ~0,9 s (X más negativo = izquierda) |
+| Degradado en bordes | `mask-image: linear-gradient(... 0 / 7% / 93% / 100%)` aplicado al viewport |
+| Bucle continuo | Dos `.recognition-set` de 1372 px; pista 2744 px (`-50%` coincide); `padding-right` = `gap` |
+| Pausa al hover | Con `:hover` forzado: `animation-play-state: paused` y transform fijo (−116.75) |
+| Reanudación | Al quitar `:hover`: `running` y X de −200 a −227 sin reinicio a 0 |
+| Sombras / diploma | `box-shadow: 0 18px 40px`; diploma `object-fit: contain`; `overflow` de página no extra |
+| Reduced motion | `animation: none`, 0 clones, `flex-wrap`, máscara `none`; 4 botones en el árbol de accesibilidad |
+| Sin timers rivales | No queda `setInterval` ni avance por opacidad en `js/site.js` |
+
+Limitaciones: `mask-image` no cubre navegadores muy antiguos (el recorte `overflow: hidden` sigue ocultando el borde). El hover real del puntero no se retuvo en la automatización; la pausa se comprobó con `CSS.forcePseudoState`. El visor de capturas a veces no sigue el scroll hasta la cinta; las medidas CDP sí.
+
 ## Git (sin commit)
 
 ```
